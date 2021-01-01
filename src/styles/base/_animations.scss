@@ -1,0 +1,21 @@
+// Pass buttons
+
+@-webkit-keyframes ok {
+    0%   {transform: rotate(-0.25turn) translate(90px, -125px); opacity: 0;}
+    100% {transform: none; opacity: 1;}
+}
+
+@keyframes ok {
+    0%   {transform: rotate(-0.25turn) translate(90px, -125px); opacity: 0;}
+    100% {transform: none; opacity: 1;}
+}
+
+@-webkit-keyframes okk {
+    0%   {transform: rotate(0.25turn) translate(-90px, -125px); opacity: 0;}
+    100% {transform: none; opacity: 1;}
+}
+
+@keyframes okk {
+    0%   {transform: rotate(0.25turn) translate(-90px, -125px); opacity: 0;}
+    100% {transform: none; opacity: 1;}
+}
