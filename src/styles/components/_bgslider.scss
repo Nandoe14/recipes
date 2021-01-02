@@ -1,11 +1,11 @@
 .background-slider {
     background-size: cover;
     height: inherit;
+    min-height: inherit;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 1;
 
     transition: background-image 2s ease;
 }

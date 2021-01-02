@@ -1,0 +1,111 @@
+.options-form {
+    background-color: #000000c7;
+    border-bottom: 2px solid $primary;
+    border-left: 2px solid $primary;
+    color: $primary;
+    opacity: 0.9;
+    overflow: hidden;
+    position: absolute;
+    right: -632px;
+    top: 0;
+    width: 630px;
+    z-index: 1000;
+
+    transition: all 1s ease;
+
+    label, button {
+        cursor: pointer;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    button {
+        background-color: #000000c7;
+        color: #ffffff;
+        font-size: 20px;
+        height: 42px;
+        position: absolute;
+        right: 22px;
+        top: 11px;
+        width: 62px;
+    }
+}
+
+.of-cont {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    padding: 10px 20px;
+    position: relative;
+    width: 630px;
+
+    .same-cont {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        
+        input[type="checkbox"] {
+            cursor: pointer;
+            height: 16px;
+            margin-right: 10px;
+            opacity: 0.9;
+            vertical-align: middle;
+            width: 16px;
+        }
+
+        label {
+            line-height: 16px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.inputs-fields {
+    display: flex;
+    justify-content: space-between;
+
+    .label-input {
+        margin-bottom: 15px;
+        
+        label {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            background: rgba(0,0,0,.15);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 3px;
+            box-sizing: border-box;
+            color: $primary;
+            font-size: 14px;
+            height: 24px;
+            padding-left: 7px;
+        }
+    }
+}
+
+.title-input, .label-input-title {
+    width: 140px;
+}
+
+.content-input, .label-input-content {
+    width: 260px;
+}
+
+.firm-input, .label-input-firm {
+    width: 130px;
+}
+
+
+// toggle
+
+.of-show {
+    right: 0px;
+}

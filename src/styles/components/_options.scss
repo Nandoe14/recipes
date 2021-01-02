@@ -1,0 +1,101 @@
+
+.options {
+    background-color: #000000c7;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color: $primary;
+    left: 5%;
+    opacity: 0.2;
+    position: absolute;
+    top: -282px;
+    width: 300px;
+    z-index: 1000;
+
+    transition: top 0.3s ease;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    .options-content {
+        border-left: 2px solid $primary;
+        border-right: 2px solid $primary;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        position: relative;
+
+        > form:first-of-type {
+            margin-bottom: 12px;
+        }
+
+        > label {
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 22px;
+        }
+        
+        > span:last-of-type {
+            bottom: 7px;
+            color: #f5ffa2;
+            cursor: pointer;
+            position: absolute;
+            right: 12px;
+
+            &:hover {
+                color: #fff356;
+            }
+        }
+
+        form label {
+            margin-bottom: 8px;
+        }
+
+        .max-inputs {
+            font-size: 14px;
+            font-style: italic;
+            margin-left: 8px;
+            vertical-align: bottom;
+        }
+
+        .scale-span, .gap-span, .bgseconds-span {
+            color: $primary;
+            position: absolute;
+            right: 22px;
+        }
+
+        .scale-span {
+            top: 12px;
+        }
+
+        .gap-span {
+            top: 81px;
+        }
+
+        .bgseconds-span {
+            top: 180px;
+        }
+    }
+
+    .opt-span {
+        border: 2px solid $primary;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        cursor: pointer;
+
+        span {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 32px;
+            opacity: 0.9;
+            text-align: center;
+    
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
