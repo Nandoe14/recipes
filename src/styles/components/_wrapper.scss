@@ -10,6 +10,7 @@
 }
 
 .set-side {
+    box-sizing: border-box;
     height: inherit;
     min-height: inherit;
     padding-left: 20px;
@@ -26,4 +27,11 @@
     min-height: inherit;
     width: 70%;
     z-index: 1;
+}
+
+.set-side {
+    background-image: url(./../../assets/paper.jpg);
+    background-position: 50% 0%;
+    background-size: 160%;
+    background-repeat: no-repeat;
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { BGSlider } from './BGSlider'
 import { Slider } from './slider/Slider'
 
 export const Wrapper = () => {
@@ -11,7 +10,6 @@ export const Wrapper = () => {
             <div className="result-side">
                 <Slider />
             </div>
-            <BGSlider />
         </section>
     )
 }

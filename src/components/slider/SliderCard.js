@@ -18,9 +18,12 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
 
     const backgrounds = [card1, card2, card3, card4, card5, card6, card7, card8]
 
+    const tTime = 0.4 // Lapse of time for transitions
+
     const handleCardClick = () => {// When clicking on a selected card. This function modifies the card's DOM, setting the "transform" property in function of the setted Gap
         if (counter === (i + 1)) {
-            cardRef.current.style.transition = `${!changeShow ? 'transform 0.5s cubic-bezier(0.02, 0.39, 0.6, 0.76)' : 'transform 0.5s cubic-bezier(0.02, 0.39, 0.6, 0.76), z-index 0s linear 0.5s, box-shadow 0.5s ease 0.2s'}`
+            cardRef.current.style.boxShadow = `${changeShow ? '10px 10px 18px 10px rgba(0,0,0,0.8), inset 0px 0px 20px 1px rgba(0,0,0,0.2)' : '5px 5px 15px rgba(0,0,0,0.2)'}`
+            cardRef.current.style.transition = `${!changeShow ? `transform ${tTime}s cubic-bezier(0.02, 0.39, 0.6, 0.76), box-shadow ${tTime}s ease` : `transform ${tTime}s cubic-bezier(0.02, 0.39, 0.6, 0.76), z-index 0s linear ${tTime}s, box-shadow ${tTime * 0.75}s ease ${tTime * 0.25}s`}`
             cardRef.current.style.transform = `${!changeShow ? `scale(1.5) translate(${(172 + ((-296 - parseFloat(gap) - 21.1) / (4 / 3) * i))}px, 0px)` : `translate(${(454 - (24 * i)) - ((-296 - parseFloat(gap)) - ((-296 - parseFloat(gap)) * i))}px , 0)`}`
             cardRef.current.style.zIndex = `${!changeShow ? 500 : (100 - i)}`
             closeRef.current.classList.toggle("show")
@@ -44,18 +47,22 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
             }}
             onClick={handleCardClick}
         >
-            <h3>{titleCardArray[i]}</h3>
-            <div className="para-cont">
-                <p>{paragraphArray[i]}</p>
+            <div className="cs-wrapper">
+                <h3>{titleCardArray[i]}</h3>
+                <div className="para-cont">
+                    <p>{paragraphArray[i]}</p>
+                </div>
+                <span>{footerCardArray[i]}</span>
+                <img ref={closeRef} className="close" src={close} alt="X" />
             </div>
-            <span>{footerCardArray[i]}</span>
-            <img ref={closeRef} className="close" src={close} alt="X" />
             <div
                 className="shadow-card"
                 style={{
-                    boxShadow: `${(counter === (i + 1)) ? 'none' : 'inset 20px -20px 29px 20px rgba(0,0,0,0.7)'}`,
+                    boxShadow: `${(counter === (i + 1)) ? 'none' : 'inset 20px 0px 29px 20px rgba(0,0,0,0.7)'}`,
+                    transition: `${(counter === (i + 1)) ? `box-shadow ${tTime}s ease` : `box-shadow ${tTime * 0.75}s ease ${tTime * 0.25}s`}`
                 }}
-            ></div>
+            >
+            </div>
         </div>
     )
 }
