@@ -8,13 +8,12 @@ import bgImg6 from './../assets/back_slider6.jpg'
 import bgImg7 from './../assets/back_slider7.jpg'
 import bgImg8 from './../assets/back_slider8.jpg'
 import bgImg9 from './../assets/back_slider9.jpg'
-import bgImg10 from './../assets/back_slider10.jpg'
 
-export const BGSlider = ({ bgseconds = 2000 }) => {// Background Changer Component
+export const BGSlider = ({ bgseconds = 50000 }) => {// Background Changer Component
 
     const [state, setState] = useState(0)
 
-    const bgImgArray = [bgImg1, bgImg2, bgImg3, bgImg4, bgImg5, bgImg6, bgImg7, bgImg8, bgImg9, bgImg10]
+    const bgImgArray = [bgImg1, bgImg2, bgImg3, bgImg4, bgImg5, bgImg6, bgImg7, bgImg8, bgImg9]
 
     useEffect(() => {
         const lapse = setTimeout(() => {// Setting the cycle to change the Slider background image

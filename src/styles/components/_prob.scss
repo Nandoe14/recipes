@@ -1,0 +1,41 @@
+.set-info {
+    h2 {
+        // background-image: url(./../../assets/back_slider1.jpg);
+        position: absolute;
+        top: 0;
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .l1 {
+        height: 20px;
+        left: 2px;
+        z-index: 5;
+    }
+
+    .l2 {
+        height: 40px;
+        left: -2px;
+        z-index: 4;
+    }
+
+    .l3 {
+        height: 60px;
+        left: 2px;
+        z-index: 3;
+    }
+
+    .l4 {
+        height: 80px;
+        left: -2px;
+        z-index: 2;
+    }
+
+    .l5 {
+        height: 100px;
+        left: 2px;
+        z-index: 1;
+    }
+}

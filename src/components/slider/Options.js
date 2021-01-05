@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-export const Options = ({ cardClick, setCardClick, setcards, howManyCards, scale, gap, bgseconds, bgsecondset, handleInputChange, resetScale, resetGap, resetBGTime, reset, OptionAllRef, ofRef }) => {
+export const Options = ({ cardClick, setCardClick, setcards, howManyCards, scale, gap, bgseconds, bgsecondset, handleInputChange, resetScale, resetGap, resetBGTime, reset, OptionAllRef }) => {
 
     const OptionRef = useRef(null)// Catching the div with className "options-content"
     const InputSNRef = useRef(null)// Catching the input with className "set-card"
@@ -23,10 +23,6 @@ export const Options = ({ cardClick, setCardClick, setcards, howManyCards, scale
 
     const handleInputClickSN = () => {// When clicking on the input with className "set-card"
         InputSNRef.current.select()
-    }
-
-    const handleClickSetCards = () => {// When clicking on the span to set card's content
-        ofRef.current.classList.add('of-show')
     }
 
     const handleScaleClick = () => {// When clicking on the span to scale the slider
@@ -123,7 +119,6 @@ export const Options = ({ cardClick, setCardClick, setcards, howManyCards, scale
                     />
                     <span className="max-inputs">(8 max.)</span>
                 </form>
-                <span onClick={handleClickSetCards}>Set card's content</span>
             </div>
             <div className="opt-span" onClick={handleClickOp}>
                 <span>Options</span>

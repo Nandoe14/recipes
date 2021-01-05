@@ -6,8 +6,9 @@
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 1;
 
-    transition: background-image 2s ease;
+    transition: background-image 2s linear;
 }
 
 // Class to pre-download background images

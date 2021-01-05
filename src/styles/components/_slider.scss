@@ -20,7 +20,6 @@
 
 .cont {
     align-items: center;
-    box-sizing: border-box;
     display: flex;
     height: inherit;
     justify-content: center;
@@ -33,7 +32,6 @@
     background-size: cover;
     border-radius: 18px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9), inset 0px 0px 20px 1px rgba(0,0,0,0.2);
-    box-sizing: border-box;
     cursor: pointer;
     height: 492px;
     position: relative;
@@ -45,7 +43,6 @@
     .cs-wrapper {
         display: flex;
         flex-direction: column;
-        box-sizing: border-box;
         height: inherit;
         overflow: hidden;
         width: 100%;
@@ -170,12 +167,4 @@
     width: 100%;
 
     transition: background-image 2s cubic-bezier(0.04, 0.63, 0.35, 0.97);
-}
-
-
-// Class to pre-download background images
-
-.img-desc {
-    display: none;
-    width: 1px;
 }

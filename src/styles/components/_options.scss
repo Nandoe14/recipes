@@ -36,18 +36,6 @@
             display: block;
             margin-bottom: 22px;
         }
-        
-        > span:last-of-type {
-            bottom: 7px;
-            color: #f5ffa2;
-            cursor: pointer;
-            position: absolute;
-            right: 12px;
-
-            &:hover {
-                color: #fff356;
-            }
-        }
 
         form label {
             margin-bottom: 8px;

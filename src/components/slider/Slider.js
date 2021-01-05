@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { SliderCard } from './SliderCard'
 import { Options } from './Options'
-import { OptionsForm } from './OptionsForm'
 import { useCounter } from '../../hooks/useCounter'
 import { useForm } from '../../hooks/useForm'
 import { titleCardArray } from './../../data/cardContents'
@@ -27,7 +26,6 @@ export const Slider = () => {
     }
 
     const OptionAllRef = useRef(null)// Catching the div with className "options" at Options.js
-    const ofRef = useRef(null)// Catching the div with className "options-form" at OptionsForm.js
 
     const [cardClick, setCardClick] = useState({
         changeShow: false,
@@ -78,7 +76,6 @@ export const Slider = () => {
         if (!changeShow) {
             OptionAllRef.current.classList.remove('oc-show')
             OptionAllRef.current.classList.remove('op-opacity')
-            ofRef.current.classList.remove('of-show')
         }
     }
 
@@ -114,7 +111,6 @@ export const Slider = () => {
                             gap={gap}
                             handleInputChange={handleInputChange}
                             howManyCards={howManyCards}
-                            ofRef={ofRef}
                             OptionAllRef={OptionAllRef}
                             reset={reset}
                             resetBGTime={resetBGTime}
@@ -123,14 +119,6 @@ export const Slider = () => {
                             scale={scale}
                             setcards={setcards}
                             setCardClick={setCardClick}
-                        />
-                        <OptionsForm
-                            cardClick={cardClick}
-                            howManyCards={howManyCards}
-                            ofRef={ofRef}
-                            OptionAllRef={OptionAllRef}
-                            setCardClick={setCardClick}
-                            {...cardsContent}
                         />
                     </>
                 }
