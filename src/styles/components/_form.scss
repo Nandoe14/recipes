@@ -20,27 +20,35 @@
         position: absolute;
         right: 0;
         bottom: 10px;
+        text-shadow: 1px 1px 3px #000000e6;
         z-index: 2;
 
         &:hover {
             transform: scale(1.1);
         }
+
+        &:active {
+            transform: scale(0.9);
+        }
     }
 
-    .show-span {
-        font-style: italic;
-        font-family: 'Lato', sans-serif;
-        cursor: pointer;
+    .shower-cont {
         position: absolute;
         left: 0;
         bottom: 10px;
-        display: block;
-        text-align: center;
         width: 100%;
-        opacity: 0.6;
+        text-align: center;
 
-        &:hover {
-            opacity: 1;
+        .show-span {
+            cursor: pointer;
+            font-style: italic;
+            font-family: 'Lato', sans-serif;
+            opacity: 0.6;
+            padding: 10px;
+    
+            &:hover {
+                opacity: 1;
+            }
         }
     }
 }
@@ -49,6 +57,7 @@
     display: flex;
     font-family: 'Sacramento', cursive;
     margin-bottom: 10px;
+    z-index: 1;
 
     label, input {
         font-size: 28px;

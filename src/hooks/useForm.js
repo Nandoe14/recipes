@@ -10,6 +10,10 @@ export const useForm = (initialState = {}, opstate = {// Checkbox initial state 
 
     const { titleCheck, contentCheck, firmCheck } = opstate
 
+    const reset = () => {// Set the values to the initialState
+        setvalues(initialState)
+    }
+
     const resetScale = () => {// Set scale to 100
         setvalues({
             ...values,
@@ -151,5 +155,5 @@ export const useForm = (initialState = {}, opstate = {// Checkbox initial state 
             localStorage.gapSlider = target.value
         }
     }
-    return [values, handleInputChange, resetScale, resetGap, resetBGTime]
+    return [values, handleInputChange, reset, resetScale, resetGap, resetBGTime]
 }

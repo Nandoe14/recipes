@@ -29,10 +29,8 @@
 }
 
 .card-slider {
-    background-size: cover;
     border-radius: 18px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9), inset 0px 0px 20px 1px rgba(0,0,0,0.2);
-    cursor: pointer;
     height: 492px;
     position: relative;
     overflow: hidden;
@@ -41,53 +39,128 @@
     transition: transform 0.4s cubic-bezier(0.02, 0.39, 0.6, 0.76), box-shadow 0.3s ease 0.1s;
 
     .cs-wrapper {
-        display: flex;
-        flex-direction: column;
         height: inherit;
         overflow: hidden;
         width: 100%;
         z-index: 2;
             
-        h3 {
-            background-color: #00000075;
-            color: $primary;
-            font-family: 'Lato', sans-serif;
-            font-size: 28px;
-            letter-spacing: 0.5px;
-            line-height: 35px;
-            padding: 32px 30px 30px 30px;
-            opacity: 0.9;
-        }
-        
-        p {
-            color: $primary;
-            display: block;
-            font-family: 'Courgette', cursive;
-            font-size: 28px;
-            opacity: 0.9;
-            text-align: center;
-            text-shadow: 1px 1px 3px black;
-            width: 100%;
-        }
-        
-        span {
-            color: $primary;
-            font-family: 'Sacramento', cursive;
-            font-size: 24px;
-            height: 10%;
-            opacity: 0.9;
-            padding-right: 23px;
-            text-align: right;
+        .title-recipe {
+            position: relative;
+            height: 192px;
+            background-position: center;
+            background-size: cover;
+
+            h3 {
+                overflow: hidden;
+                white-space: nowrap;
+                padding: 14px;
+                color: $primary;
+                font-family: 'Sacramento', cursive;
+                font-size: 36px;
+                letter-spacing: 0.5px;
+                line-height: 38px;
+                text-overflow: ellipsis;
+                text-shadow: 1px 1px 3px black;
+            }
+
+            .diets-stars {
+                display: flex;
+                justify-content: flex-end;
+                bottom: 0;
+                padding: 6px 0px;
+                position: absolute;
+                width: 100%;
+                z-index: 3;
+
+                img {
+                    cursor: pointer;
+                    width: 35px;
+                    margin-right: 6px;
+                }
+            }
         }
 
         .para-cont {
-            align-items: center;
-            display: flex;
-            height: 100%;
-            padding: 0 14px;
+            background-image: url(../../assets/eggs.png), url(../../assets/flour2.png), url(../../assets/flour.png);
+            background-color: black;
+            background-position: -5% 118%,-3% 155%, 15% -105%;
+            background-repeat: no-repeat;
+            height: 300px;
+            position: relative;
+            padding: 10px 16px;
+            overflow: hidden;
+            z-index: 2;
+
+            .very-healthy {
+                cursor: pointer;
+                position: absolute;
+                top: 10px;
+                right: 12px;
+                width: 50px;
+                z-index: 3;
+            }
+
+            // .source-name {
+            //     font-family: 'Courgette', cursive;
+            //     position: absolute;
+            //     bottom: 0;
+            //     right: 0;
+            //     display: block;
+            //     font-size: 24px;
+            //     opacity: 0.9;
+            //     padding-right: 17px;
+            //     text-align: right;
+            //     overflow: hidden;
+            //     text-overflow: ellipsis;
+            //     white-space: nowrap;
+            //     width: 60%;
+            //     z-index: 2;
+            // }
+
+            .line-info-recipe {
+                color: $primary;
+                display: flex;
+                align-items: flex-start;
+                padding: 5px 0px;
+    
+                > div {
+                    height: 100%;
+                }
+                
+                img {
+                    margin: 2px 13px 0 0;
+                    width: 20px;
+                }
+    
+                span {
+                    display: block;
+                    font-family: 'Courgette', cursive;
+                    font-size: 18px;
+                    overflow: hidden;
+                    max-height: 96px;
+                }
+    
+                .info-recipe-e {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+            
+            .full-recipe {
+                cursor: pointer;
+                color: rgb(255, 177, 0);
+                margin: -2px 0 0 33px;
+                display: block;
+                font-size: 14px;
+
+                &:hover {
+                    color: rgb(255, 102, 0);
+                }
+            }
         }
         
         .close {
+            cursor: pointer;
             display: none;
             margin: 11px 12px 0 0;
             opacity: 0.5;
@@ -95,7 +168,7 @@
             position: absolute;
             right: 0;
             top: 0;
-            width: 24px;
+            width: 40px;
             z-index: 2;
             -webkit-filter: invert(1);
                     filter: invert(1);
@@ -103,6 +176,14 @@
             &:hover {
                 opacity: 1;
             }
+        }
+
+        .divider-line {
+            position: absolute;
+            top: 185px;
+            left: 0;
+            width: 100%;
+            z-index: 2;
         }
     }
 

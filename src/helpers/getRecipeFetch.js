@@ -1,7 +1,27 @@
 
-export const useFetch = async (text) => {
+export const getRecipeFetch = async (Arr = []) => {
 
-    // const resp = await fetch(`https://twinword-sentiment-analysis.p.rapidapi.com/analyze/?text=${encodeURI(text)}`, {
+    const query = `&query=${Arr[0]?.value}`,
+        intolerances = `&intolerances=${Arr[1]?.value}`,
+        type = `&type=${Arr[2]?.value}`,
+        includeIngredients = `&includeIngredients=${Arr[3]?.value}`,
+        cuisine = `&cuisine=${Arr[4]?.value}`,
+        excludeIngredients = `&excludeIngredients=${Arr[5]?.value}`,
+        diet = `&diet=${Arr[6]?.value}`,
+        maxReadyTime = `&maxReadyTime=${Arr[7]?.value}`,
+        maxCalories = `&maxCalories=${Arr[8]?.value}`,
+        minCalories = `&minCalories=${Arr[9]?.value}`,
+        maxSugar = `&maxSugar=${Arr[10]?.value}`,
+        minSugar = `&minSugar=${Arr[11]?.value}`,
+        quantity = `&quantity=${Arr[12]?.value}`
+
+    const rlink = query + intolerances + type + includeIngredients + cuisine + excludeIngredients + diet + maxReadyTime + maxCalories + minCalories + maxSugar + minSugar + quantity
+
+    const link = `https://api.spoonacular.com/recipes/complexSearch?apiKey=API_KEY&addRecipeInformation=true${rlink}`
+
+    // const link = `https://twinword-sentiment-analysis.p.rapidapi.com/analyze/?text=${encodeURI(text)}`
+
+    // const resp = await fetch(link, {
     //     "method": "GET",
     //     "headers": {
     //         "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
@@ -429,7 +449,9 @@ export const useFetch = async (text) => {
         totalResults: 116
     }
 
-    const data = dataIn.map(({ vegetarian, vegan, glutenFree, dairyFree, veryHealthy, gaps, lowFodmap, sourceName, title, readyInMinutes, servings, sourceUrl, image, cuisines, dishTypes, diets, analyzedInstructions }) => {
+    const { results } = dataIn
+
+    const data = results.map(({ vegetarian, vegan, glutenFree, dairyFree, veryHealthy, gaps, lowFodmap, title, readyInMinutes, servings, sourceUrl, image, cuisines, dishTypes, diets, analyzedInstructions }) => {
         return {
             vegetarian,
             vegan,
@@ -438,7 +460,6 @@ export const useFetch = async (text) => {
             veryHealthy,
             gaps,
             lowFodmap,
-            sourceName,
             title,
             readyInMinutes,
             servings,

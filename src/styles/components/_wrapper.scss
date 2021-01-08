@@ -1,17 +1,17 @@
 #wrapper {
-    height: 100vh;
+    // height: 100vh;
     max-width: 1600px;
     min-height: 647px;
     // min-width: 1351px; ////////////////// ojo
     position: relative;
     width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     max-width: 1600px;
 }
 
 .container {
     position: absolute;
-    top: -100vh;
+    // top: -100vh;
     left: 0;
     min-height: 647px;
     width: 100%;
@@ -51,8 +51,8 @@
 
 .set-info {
     color: $primary;
-    padding: 20px 40px 0 40px;
-    width: 786px;
+    padding: 20px 40px 0 60px;
+    width: 806px;
 
     h2 {
         margin-bottom: 16px;
@@ -71,4 +71,22 @@
     font-weight: lighter;
     margin-bottom: 32px;
     text-align: center;
+}
+
+.loading {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.048);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+
+    img {
+        width: 300px;
+        opacity: 0.4;
+    }
 }
