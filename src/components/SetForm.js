@@ -5,11 +5,11 @@ import loadingImg from './../assets/loading.gif'
 import { getRecipeFetch } from '../helpers/getRecipeFetch'
 import { AppContext } from './AppContext'
 
-export const SetForm = () => {
+export const SetForm = ({ containerRef }) => {
 
     const { formState, setFormState } = useContext(AppContext)
 
-    const { showMore, loading, data } = formState
+    const { showMore, loading } = formState
 
     const [inputValues, handleInputChange, reset] = useForm({
         query: '',
@@ -51,7 +51,6 @@ export const SetForm = () => {
 
     const handleSubmit = (e) => {// When submitting the form to set Card's Content
         e.preventDefault()
-        console.log(e.target[1].value, typeof e.target[1].value)
         setFormState({
             ...formState,
             loading: true
@@ -65,9 +64,8 @@ export const SetForm = () => {
                 }))
             reset()
         }, 2000);
+        containerRef.current.classList.toggle("animate-container")
     }
-
-    console.log(data)
 
     return (
         <form onSubmit={handleSubmit} style={{ height: `${(showMore) ? 264 : 385}px` }}>

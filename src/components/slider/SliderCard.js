@@ -1,13 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { AppContext } from '../AppContext'
 import close from './../../assets/close3.png'
-import card1 from './../../assets/card1.jpg'
-import card2 from './../../assets/card2.jpg'
-import card3 from './../../assets/card3.jpg'
-import card4 from './../../assets/card4.jpg'
-import card5 from './../../assets/card5.jpg'
-import card6 from './../../assets/card6.jpg'
-import card7 from './../../assets/card7.jpg'
-import card8 from './../../assets/card8.jpg'
 import vegetarianImg from './../../assets/vegetarian.png'
 import veganImg from './../../assets/vegan.png'
 import glutenFreeImg from './../../assets/glutenFree.png'
@@ -15,19 +8,90 @@ import dairyFreeImg from './../../assets/dairyFree.png'
 import veryHealthyImg from './../../assets/veryHealthy.png'
 import gapsImg from './../../assets/gaps.png'
 import lowFodmapImg from './../../assets/lowFodmap.png'
-import readyMinutsImg from './../../assets/readyMinuts.png'
+import chefHatImg from './../../assets/chefHat.png'
 import dividerLineImg from './../../assets/dividerLine.png'
 
-export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCards, titleCardArray, paragraphArray, footerCardArray }) => {
+export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCards, passlRef, passrRef }) => {
+
+    const { formState } = useContext(AppContext)
+    const { data } = formState
+    const { changeShow } = cardClick
+    const tTime = 0.4 // Lapse of time for transitions
+
+    // const { vegetarian, vegan, glutenFree, dairyFree, veryHealthy, gaps, lowFodmap, title, readyInMinutes, servings, sourceUrl, image, cuisines, dishTypes, diets, analyzedInstructions } = data
 
     const cardRef = useRef(null)// Catching the div with className "card-slider"
     const closeRef = useRef(null)// Catching the img with className "close"
 
-    const { changeShow } = cardClick
+    const vegetarianArray = data.map(({ vegetarian }) => {
+        return vegetarian
+    })
 
-    const backgrounds = [card1, card2, card3, card4, card5, card6, card7, card8]
+    const veganArray = data.map(({ vegan }) => {
+        return vegan
+    })
 
-    const tTime = 0.4 // Lapse of time for transitions
+    const glutenFreeArray = data.map(({ glutenFree }) => {
+        return glutenFree
+    })
+
+    const dairyFreeArray = data.map(({ dairyFree }) => {
+        return dairyFree
+    })
+
+    const gapsArray = data.map(({ gaps }) => {
+        return gaps
+    })
+
+    const lowFodmapArray = data.map(({ lowFodmap }) => {
+        return lowFodmap
+    })
+
+    const veryHealthyArray = data.map(({ veryHealthy }) => {
+        return veryHealthy
+    })
+
+    const titleCardArray = data.map(({ title }) => {
+        return title
+    })
+
+    const readyInMinutesArray = data.map(({ readyInMinutes }) => {
+        return readyInMinutes
+    })
+
+    const servingsArray = data.map(({ servings }) => {
+        return servings
+    })
+
+    const sourceUrlArray = data.map(({ sourceUrl }) => {
+        return sourceUrl
+    })
+
+    const backgrounds = data.map(({ image }) => {
+        return image
+    })
+
+    const dishTypesArray = data.map(({ dishTypes }) => {
+        return (dishTypes.join(", "))
+    })
+
+    const dietsArray = data.map(({ diets }) => {
+        return (diets.join(", "))
+    })
+
+    const analyzedInstructionsArray = data.map(({ analyzedInstructions }) => {
+        return analyzedInstructions[0]?.steps.map(step => {
+            return step.ingredients?.map(ingredient => {
+                return ingredient.name
+            })
+        })
+    })
+
+    const aIArray = analyzedInstructionsArray[i]?.map(ana => {
+        return ana.join(", ")
+    })
+
+    const aIArray2 = aIArray?.join(", ").replace(/, , /g, ", ").replace(/, , /g, ", ")
 
     const handleCardClick = () => {// When clicking on a selected card. This function modifies the card's DOM, setting the "transform" property in function of the setted Gap
         if (counter === (i + 1)) {
@@ -37,6 +101,8 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
             cardRef.current.style.zIndex = `${!changeShow ? 500 : (100 - i)}`
             cardRef.current.style.cursor = `${!changeShow ? 'default' : 'pointer'}`
             closeRef.current.classList.toggle("show")
+            passlRef.current.classList.toggle("passl-open")
+            passrRef.current.classList.toggle("passr-open")
             setCardClick({
                 ...cardClick,
                 changeShow: !changeShow
@@ -57,40 +123,60 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
             onClick={handleCardClick}
         >
             <div className="cs-wrapper">
-                <div className="title-recipe" style={{ backgroundImage: `url(${backgrounds[i]})` }}>
+                <div className={`title-recipe${(counter === (i + 1) && changeShow) ? " tr-hover" : ""}`} style={{ backgroundImage: `url(${backgrounds[i]})` }}>
                     <h3>{titleCardArray[i]}</h3>
                     <div className="diets-stars">
-                        <img src={vegetarianImg} alt="vegetarian" />
-                        <img src={veganImg} alt="vegan" />
-                        <img src={glutenFreeImg} alt="glutenFree" />
-                        <img src={dairyFreeImg} alt="dairyFree" />
-                        <img src={gapsImg} alt="gaps" />
-                        <img src={lowFodmapImg} alt="lowFodmap" />
+                        {vegetarianArray[i] && <img src={vegetarianImg} alt="vegetarian" />}
+                        {veganArray[i] && <img src={veganImg} alt="vegan" />}
+                        {glutenFreeArray[i] && <img src={glutenFreeImg} alt="glutenFree" />}
+                        {dairyFreeArray[i] && <img src={dairyFreeImg} alt="dairyFree" />}
+                        {(gapsArray[i] === 'yes') && <img src={gapsImg} alt="gaps" />}
+                        {lowFodmapArray[i] && <img src={lowFodmapImg} alt="lowFodmap" />}
                     </div>
                 </div>
                 <div className="para-cont">
-                    <div className="line-info-recipe">
-                        <img src={readyMinutsImg} alt="readyMinuts" />
-                        <span className="info-recipe-e">4 Servings</span>
-                    </div>
-                    <div className="line-info-recipe">
-                        <img src={readyMinutsImg} alt="readyMinuts" />
-                        <span className="info-recipe-e">Ready in 45 minutes</span>
-                    </div>
-                    <div className="line-info-recipe">
-                        <img src={readyMinutsImg} alt="readyMinuts" />
-                        <span className="info-recipe-e">For lunch, main course, main dish, dinner</span>
-                    </div>
-                    <div className="line-info-recipe">
-                        <img src={readyMinutsImg} alt="readyMinuts" />
-                        <span className="info-recipe-e">Pescatarian Diet</span>
-                    </div>
-                    <div className="line-info-recipe">
-                        <img src={readyMinutsImg} alt="readyMinuts" />
-                        <span className="">Some ingredients: Pasta, water, olive oil, onion, all purpose flour, milk, hot sauce, green onions, parsley, cheese, peas, tuna</span>
-                    </div>
-                    <span className="full-recipe">Full Recipe...</span>
-                    <img className="very-healthy" src={veryHealthyImg} alt="veryHealthy" />
+                    {
+                        (servingsArray[i])
+                        &&
+                        (<div className="line-info-recipe">
+                            <img src={chefHatImg} alt="chefHat" />
+                            <span className="info-recipe-e">{`${servingsArray[i]} Servings`}</span>
+                        </div>)
+                    }
+                    {
+                        (readyInMinutesArray[i])
+                        &&
+                        (<div className="line-info-recipe">
+                            <img src={chefHatImg} alt="chefHat" />
+                            <span className="info-recipe-e">{`Ready in ${readyInMinutesArray[i]} minutes`}</span>
+                        </div>)
+                    }
+                    {
+                        (dishTypesArray[i])
+                        &&
+                        (<div className="line-info-recipe">
+                            <img src={chefHatImg} alt="chefHat" />
+                            <span className="info-recipe-e">{`For ${dishTypesArray[i]}`}</span>
+                        </div>)
+                    }
+                    {
+                        (dietsArray[i])
+                        &&
+                        (<div className="line-info-recipe">
+                            <img src={chefHatImg} alt="chefHat" />
+                            <span className="info-recipe-e">{`${dietsArray[i]} Diet`}</span>
+                        </div>)
+                    }
+                    {
+                        (aIArray2)
+                        &&
+                        (<div className="line-info-recipe">
+                            <img src={chefHatImg} alt="chefHat" />
+                            <span className="">{`Some ingredients: ${aIArray2}`}</span>
+                        </div>)
+                    }
+                    <span className="full-recipe"><a href={sourceUrlArray[i]} target="_blank" rel="noreferrer">Full Recipe...</a></span>
+                    {(veryHealthyArray[i]) && <img className="very-healthy" src={veryHealthyImg} alt="veryHealthy" />}
                     {/* <span className="source-name">{footerCardArray[i]}</span> */}
                 </div>
                 <img ref={closeRef} className="close" src={close} alt="X" />

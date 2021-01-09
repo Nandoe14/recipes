@@ -1,17 +1,17 @@
 #wrapper {
-    // height: 100vh;
+    height: 100vh;
     max-width: 1600px;
     min-height: 647px;
     // min-width: 1351px; ////////////////// ojo
     position: relative;
     width: 100%;
-    // overflow: hidden;
+    overflow: hidden;
     max-width: 1600px;
 }
 
 .container {
     position: absolute;
-    // top: -100vh;
+    top: -100vh;
     left: 0;
     min-height: 647px;
     width: 100%;
@@ -27,6 +27,23 @@
     min-height: inherit;
     width: 100%;
     z-index: 1;
+
+    .pot-cover-cont {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: inherit;
+        height: inherit;
+        overflow: hidden;
+        z-index: 3;
+
+        .pot-cover {
+            width: 50%;
+        }
+    }
 }
 
 .set-side {
@@ -89,4 +106,13 @@
         width: 300px;
         opacity: 0.4;
     }
+}
+
+// Adding Animations
+
+.animate-container {
+    -webkit-animation: showResults 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1;
+            animation: showResults 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
 }

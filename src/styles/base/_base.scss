@@ -41,7 +41,7 @@ h2 {
 
 // Inputs Styles
 
-input[type=text] {
+input[type=text], input[type=number] {
     background: transparent;
     border: none;
     color: $primary;

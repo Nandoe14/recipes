@@ -7,8 +7,12 @@ export const Recipes = () => {
     const [formState, setFormState] = useState({
         showMore: true,
         loading: false,
-        data: {}
+        data: []
     })
+
+    const { data } = formState
+
+    console.log(data)
 
     return (
         <AppContext.Provider value={{

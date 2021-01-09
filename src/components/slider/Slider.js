@@ -26,6 +26,8 @@ export const Slider = () => {
     }
 
     const OptionAllRef = useRef(null)// Catching the div with className "options" at Options.js
+    const passlRef = useRef(null)
+    const passrRef = useRef(null)
 
     const [cardClick, setCardClick] = useState({
         changeShow: false,
@@ -91,6 +93,8 @@ export const Slider = () => {
                                 gap={gap}
                                 howManyCards={howManyCards}
                                 i={unit}
+                                passlRef={passlRef}
+                                passrRef={passrRef}
                                 key={unit}
                                 setCardClick={setCardClick}
                                 {...cardsContent}
@@ -98,29 +102,27 @@ export const Slider = () => {
                         )
                     }
                 </div>
+                <img ref={passlRef} className="btnld" src={iRow} alt="<" onClick={() => handleClickPass(false)} />
+                <img ref={passrRef} className="btnrd" src={dRow} alt=">" onClick={() => handleClickPass(true)} />
                 {
                     (!changeShow)
                     &&
-                    <>
-                        <img className="btnld" src={iRow} alt="<" onClick={() => handleClickPass(false)} />
-                        <img className="btnrd" src={dRow} alt=">" onClick={() => handleClickPass(true)} />
-                        <Options
-                            bgseconds={bgseconds}
-                            bgsecondset={bgsecondset}
-                            cardClick={cardClick}
-                            gap={gap}
-                            handleInputChange={handleInputChange}
-                            howManyCards={howManyCards}
-                            OptionAllRef={OptionAllRef}
-                            reset={reset}
-                            resetBGTime={resetBGTime}
-                            resetGap={resetGap}
-                            resetScale={resetScale}
-                            scale={scale}
-                            setcards={setcards}
-                            setCardClick={setCardClick}
-                        />
-                    </>
+                    <Options
+                        bgseconds={bgseconds}
+                        bgsecondset={bgsecondset}
+                        cardClick={cardClick}
+                        gap={gap}
+                        handleInputChange={handleInputChange}
+                        howManyCards={howManyCards}
+                        OptionAllRef={OptionAllRef}
+                        reset={reset}
+                        resetBGTime={resetBGTime}
+                        resetGap={resetGap}
+                        resetScale={resetScale}
+                        scale={scale}
+                        setcards={setcards}
+                        setCardClick={setCardClick}
+                    />
                 }
             </div>
         </div>

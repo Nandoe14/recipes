@@ -26,7 +26,7 @@ export const FormInputsFields = ({
             <input
                 id={`input-${namesArray[i]}`}
                 className="input-food"
-                type="text"
+                type={`${(i < 7) ? "text" : "number"}`}
                 name={namesArray[i]}
                 value={valuesArray[i]}
                 maxLength="250"
