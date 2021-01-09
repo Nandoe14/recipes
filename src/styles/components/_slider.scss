@@ -30,13 +30,10 @@
 
 .card-slider {
     border-radius: 18px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.9), inset 0px 0px 20px 1px rgba(0,0,0,0.2);
     height: 492px;
     position: relative;
     overflow: hidden;
     width: 320px;
-
-    transition: transform 0.4s cubic-bezier(0.02, 0.39, 0.6, 0.76), box-shadow 0.3s ease 0.1s;
 
     .cs-wrapper {
         height: inherit;
@@ -185,9 +182,7 @@
         position: absolute;
         top: -40px;
         width: 100%;
-        z-index: 1;
-
-        transition: box-shadow 0.3s ease 0.1s;
+        z-index: 2;
     }
 
 }
@@ -245,4 +240,42 @@
 
 .passr-open {
     transform: rotate(0.25turn) translate(-90px, -200px);
+}
+
+        // --- Card-slider ----//
+
+.box-shadow1 {
+    box-shadow: 10px 10px 18px 10px rgba(0,0,0,0.8), inset 0px 0px 20px 1px rgba(0,0,0,0.2);
+}
+
+.box-shadow2 {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
+
+.box-shadow3 {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.box-shadow4 {
+    box-shadow: inset 20px 0px 29px 20px rgba(0,0,0,0.7);
+}
+
+.cursorp {
+    cursor: pointer;
+}
+
+.transition-cards {
+    transition: transform $tTime cubic-bezier(0.02, 0.39, 0.6, 0.76), box-shadow ($tTime * 0.75) ease ($tTime * 0.25)
+}
+
+.transition-cardc {
+    transition: transform $tTime cubic-bezier(0.02, 0.39, 0.6, 0.76), z-index 0s linear $tTime, box-shadow ($tTime * 0.75) ease ($tTime * 0.25)
+}
+
+.transition-shadowcards {
+    transition: box-shadow ($tTime * 0.75) ease ($tTime * 0.25)
+}
+
+.transition-shadowcardc {
+    transition: box-shadow $tTime ease;
 }

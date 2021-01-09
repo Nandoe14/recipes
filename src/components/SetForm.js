@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import { useForm } from '../hooks/useForm'
 import { FormInputsFields } from './FormInputsFields'
-import loadingImg from './../assets/loading.gif'
 import { getRecipeFetch } from '../helpers/getRecipeFetch'
 import { AppContext } from './AppContext'
 
-export const SetForm = ({ containerRef }) => {
+export const SetForm = ({ containerRef, potCoverContRef, potCoverRef }) => {
 
     const { formState, setFormState } = useContext(AppContext)
-
-    const { showMore, loading } = formState
+    const { showMore } = formState
 
     const [inputValues, handleInputChange, reset] = useForm({
         query: '',
@@ -62,6 +60,12 @@ export const SetForm = ({ containerRef }) => {
                     loading: false,
                     data: info
                 }))
+                .then(
+                    setTimeout(() => {
+                        potCoverRef.current.classList.toggle("remove-pot-top")
+                        potCoverContRef.current.classList.toggle("remove-pt-cont")
+                    }, 500)
+                )
             reset()
         }, 2000);
         containerRef.current.classList.toggle("animate-container")
@@ -92,15 +96,6 @@ export const SetForm = ({ containerRef }) => {
                         <span className="show-span" onClick={handleShowClick}>Show less</span>
                 }
             </div>
-            {
-                (loading)
-                &&
-                (
-                    <div className="loading">
-                        <img src={loadingImg} alt="loading..." />
-                    </div>
-                )
-            }
         </form>
     )
 }

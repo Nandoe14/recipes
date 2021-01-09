@@ -73,3 +73,21 @@
         font-family: 'Sacramento', cursive;
     }
 }
+
+.loading {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.048);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    img {
+        width: 300px;
+        opacity: 0.4;
+    }
+}
