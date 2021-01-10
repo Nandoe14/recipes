@@ -1,53 +1,22 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import { AppContext } from '../AppContext'
 import { SliderCard } from './SliderCard'
-import { Options } from './Options'
 import { useCounter } from '../../hooks/useCounter'
-import { useForm } from '../../hooks/useForm'
-import { titleCardArray } from './../../data/cardContents'
-import { paragraphArray } from './../../data/cardContents'
-import { footerCardArray } from './../../data/cardContents'
 import iRow from '../../assets/pass_i2.svg'
 import dRow from '../../assets/pass_d2.svg'
 
 export const Slider = () => {
 
-    if (typeof (Storage) !== "undefined") {
-        if (!localStorage.scaleSlider) {
-            localStorage.scaleSlider = 100;// Save to local storage the scale value of 100
-        }
-        if (!localStorage.gapSlider) {
-            localStorage.gapSlider = -296;// Save to local storage the gap value of -296
-        } else if (parseFloat(localStorage.gapSlider) > (35 - 320)) {
-            localStorage.gapSlider = 24 - 320
-        }
-        if (!localStorage.BGtimeSlider) {
-            localStorage.BGtimeSlider = 20000;// Save to local storage the BG time lapse value of 20000 (20s)
-        }
-    }
+    const { formState } = useContext(AppContext)
+    const { howManyCards } = formState
 
-    const OptionAllRef = useRef(null)// Catching the div with className "options" at Options.js
     const passlRef = useRef(null)
     const passrRef = useRef(null)
 
     const [cardClick, setCardClick] = useState({
         changeShow: false,
-        howManyCards: 8,
-        bgseconds: parseFloat(localStorage.BGtimeSlider) / 1000,
-        cardsContent: {
-            titleCardArray,
-            paragraphArray,
-            footerCardArray
-        }
     })
-    const { changeShow, howManyCards, bgseconds, cardsContent } = cardClick
-
-    const [value, handleInputChange, resetScale, resetGap, resetBGTime] = useForm({
-        scale: localStorage.scaleSlider,
-        gap: localStorage.gapSlider,
-        setcards: '',
-        bgsecondset: ''
-    })
-    const { scale, gap, bgsecondset, setcards } = value
+    const { changeShow } = cardClick
 
     const cantCards = Array.apply(null, Array(howManyCards)).map((x, i) => i) // [0,1,2,3...,n]
 
@@ -74,56 +43,27 @@ export const Slider = () => {
         }
     }
 
-    const handleClickSlide = () => {// When clicking on the Slider
-        if (!changeShow) {
-            OptionAllRef.current.classList.remove('oc-show')
-            OptionAllRef.current.classList.remove('op-opacity')
-        }
-    }
-
     return (
-        <div className="slide" onClick={handleClickSlide}>
+        <div className="slide">
             <div className="slide-cent">
-                <div className="cont" style={{ transform: `scale(${scale / 100})` }}>
+                <div className="cont">
                     {
                         cantCards.map((unit) =>
                             <SliderCard
                                 cardClick={cardClick}
                                 counter={counter}
-                                gap={gap}
                                 howManyCards={howManyCards}
                                 i={unit}
                                 passlRef={passlRef}
                                 passrRef={passrRef}
                                 key={unit}
                                 setCardClick={setCardClick}
-                                {...cardsContent}
                             />
                         )
                     }
                 </div>
                 <img ref={passlRef} className="btnld" src={iRow} alt="<" onClick={() => handleClickPass(false)} />
                 <img ref={passrRef} className="btnrd" src={dRow} alt=">" onClick={() => handleClickPass(true)} />
-                {
-                    (!changeShow)
-                    &&
-                    <Options
-                        bgseconds={bgseconds}
-                        bgsecondset={bgsecondset}
-                        cardClick={cardClick}
-                        gap={gap}
-                        handleInputChange={handleInputChange}
-                        howManyCards={howManyCards}
-                        OptionAllRef={OptionAllRef}
-                        reset={reset}
-                        resetBGTime={resetBGTime}
-                        resetGap={resetGap}
-                        resetScale={resetScale}
-                        scale={scale}
-                        setcards={setcards}
-                        setCardClick={setCardClick}
-                    />
-                }
             </div>
         </div>
     )

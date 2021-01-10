@@ -1,5 +1,5 @@
-import React, { useContext, useRef } from 'react'
-import { AppContext } from '../AppContext'
+import React, { useRef } from 'react'
+import { useCardContents } from '../../hooks/useCardContents'
 import close from './../../assets/close3.png'
 import vegetarianImg from './../../assets/vegetarian.png'
 import veganImg from './../../assets/vegan.png'
@@ -11,80 +11,13 @@ import lowFodmapImg from './../../assets/lowFodmap.png'
 import chefHatImg from './../../assets/chefHat.png'
 import dividerLineImg from './../../assets/dividerLine.png'
 
-export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCards, passlRef, passrRef }) => {
-
-    const { formState } = useContext(AppContext)
-    const { data } = formState
-    const { changeShow } = cardClick
-
-    // const { vegetarian, vegan, glutenFree, dairyFree, veryHealthy, gaps, lowFodmap, title, readyInMinutes, servings, sourceUrl, image, cuisines, dishTypes, diets, analyzedInstructions } = data
+export const SliderCard = ({ i, counter, cardClick, setCardClick, howManyCards, passlRef, passrRef }) => {
 
     const cardRef = useRef(null)// Catching the div with className "card-slider"
     const closeRef = useRef(null)// Catching the img with className "close"
 
-    const vegetarianArray = data.map(({ vegetarian }) => {
-        return vegetarian
-    })
-
-    const veganArray = data.map(({ vegan }) => {
-        return vegan
-    })
-
-    const glutenFreeArray = data.map(({ glutenFree }) => {
-        return glutenFree
-    })
-
-    const dairyFreeArray = data.map(({ dairyFree }) => {
-        return dairyFree
-    })
-
-    const gapsArray = data.map(({ gaps }) => {
-        return gaps
-    })
-
-    const lowFodmapArray = data.map(({ lowFodmap }) => {
-        return lowFodmap
-    })
-
-    const veryHealthyArray = data.map(({ veryHealthy }) => {
-        return veryHealthy
-    })
-
-    const titleCardArray = data.map(({ title }) => {
-        return title
-    })
-
-    const readyInMinutesArray = data.map(({ readyInMinutes }) => {
-        return readyInMinutes
-    })
-
-    const servingsArray = data.map(({ servings }) => {
-        return servings
-    })
-
-    const sourceUrlArray = data.map(({ sourceUrl }) => {
-        return sourceUrl
-    })
-
-    const backgrounds = data.map(({ image }) => {
-        return image
-    })
-
-    const dishTypesArray = data.map(({ dishTypes }) => {
-        return (dishTypes.join(", "))
-    })
-
-    const dietsArray = data.map(({ diets }) => {
-        return (diets.join(", "))
-    })
-
-    const analyzedInstructionsArray = data.map(({ analyzedInstructions }) => {
-        return analyzedInstructions[0]?.steps.map(step => {
-            return step.ingredients?.map(ingredient => {
-                return ingredient.name
-            })
-        })
-    })
+    const [vegetarianArray, veganArray, glutenFreeArray, dairyFreeArray, veryHealthyArray, gapsArray, lowFodmapArray, titleCardArray, readyInMinutesArray, servingsArray, sourceUrlArray, backgrounds, dishTypesArray, dietsArray, analyzedInstructionsArray] = useCardContents()
+    const { changeShow } = cardClick
 
     const aIArray = analyzedInstructionsArray[i]?.map(ana => {
         return ana.join(", ")
@@ -92,7 +25,7 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
 
     const aIArray2 = aIArray?.join(", ").replace(/, , /g, ", ").replace(/, , /g, ", ")
 
-    const handleCardClick = () => {// When clicking on a selected card. This function modifies the card's DOM, setting the "transform" property in function of the setted Gap
+    const handleCardClick = () => {// When clicking on a selected card.
         if (counter === (i + 1)) {
             if (changeShow) {
                 cardRef.current.classList.add("box-shadow1")
@@ -101,7 +34,7 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
                 cardRef.current.classList.remove("box-shadow1")
                 cardRef.current.classList.add("box-shadow2")
             }
-            cardRef.current.style.transform = `${!changeShow ? `scale(1.5) translate(${(172 + ((-296 - parseFloat(gap) - 21.1) / (4 / 3) * i))}px, 0px)` : `translate(${(454 - (24 * i)) - ((-296 - parseFloat(gap)) - ((-296 - parseFloat(gap)) * i))}px , 0)`}`
+            cardRef.current.style.transform = `${!changeShow ? `scale(1.5) translate(${(172 + ((-296 + 296 - 21.1) / (4 / 3) * i))}px, 0px)` : `translate(${(454 - (24 * i)) - ((-296 + 296) - ((-296 + 296) * i))}px , 0)`}`
             cardRef.current.style.zIndex = `${!changeShow ? 500 : (100 - i)}`
             cardRef.current.classList.toggle("cursorp")
             cardRef.current.classList.toggle("transition-cards")
@@ -116,14 +49,14 @@ export const SliderCard = ({ i, counter, cardClick, setCardClick, gap, howManyCa
         }
     }
 
-    return (// The card's DOM is setted in function of card number (i), setted Gap and total number of cards. Ok I have to confess that I had to develop the functions on a sheet of paper
+    return (// The card's DOM is setted in function of card number (i) and total number of cards.
         <div
             ref={cardRef}
-            className={`card-slider transition-cards ${(counter === (i + 1)) ? "box-shadow1 cursorp" : "box-shadow3"}`}
+            className={`card-slider transition-cardc ${(counter === (i + 1)) ? "box-shadow1 cursorp" : "box-shadow3"}`}
             style={{
                 zIndex: `${100 - i}`,
-                transform: `${(counter === (i + 1)) ? `translate(${(454 - (24 * i)) - ((-296 - parseFloat(gap)) - ((-296 - parseFloat(gap)) * i))}px , 0)` : `scale(${1 - (i * 0.007)}) rotateX(4deg) rotateY(60deg) translate(0, ${-(6 * i)}px)`}`,
-                marginLeft: `${(i === 0) ? -(((8 * 67) - 24) - (((howManyCards - 2) * (((67 * (parseFloat(gap) + 320)) / 70) + (201 / 70))))) : gap}px`
+                transform: `${(counter === (i + 1)) ? `translate(${(454 - (24 * i))}px , 0)` : `scale(${1 - (i * 0.007)}) rotateX(4deg) rotateY(60deg) translate(0, ${-(6 * i)}px)`}`,
+                marginLeft: `${(i === 0) ? -(((8 * 67) - 24) - (((howManyCards - 2) * (((67 * 24) / 70) + (201 / 70))))) : -296}px`
             }}
             onClick={handleCardClick}
         >

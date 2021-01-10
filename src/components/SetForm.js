@@ -58,17 +58,19 @@ export const SetForm = ({ containerRef, potCoverContRef, potCoverRef }) => {
                 .then(info => setFormState({
                     ...formState,
                     loading: false,
+                    howManyCards: parseFloat(e.target[12].value),
                     data: info
                 }))
                 .then(
                     setTimeout(() => {
                         potCoverRef.current.classList.toggle("remove-pot-top")
                         potCoverContRef.current.classList.toggle("remove-pt-cont")
+                        reset()
                     }, 500)
                 )
-            reset()
         }, 2000);
-        containerRef.current.classList.toggle("animate-container")
+        containerRef.current.classList.toggle("animate-container-results")
+        containerRef.current.classList.remove("animate-container-goback")
     }
 
     return (

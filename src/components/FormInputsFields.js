@@ -29,6 +29,8 @@ export const FormInputsFields = ({
                 type={`${(i < 7) ? "text" : "number"}`}
                 name={namesArray[i]}
                 value={valuesArray[i]}
+                max={`${(i === 12) ? 8 : undefined}`}
+                min={`${(i === 12) ? 2 : undefined}`}
                 maxLength="250"
                 autoComplete="off"
                 required={(i === 0 || i === 12)}

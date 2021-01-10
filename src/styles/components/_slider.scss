@@ -25,6 +25,7 @@
     justify-content: center;
     margin: auto;
     position: relative;
+    transform: scale(0.69);
     z-index: 2;
 }
 
@@ -131,7 +132,7 @@
             }
             
             .full-recipe {                
-                margin: -2px 0 0 33px;
+                margin: 3px 0 0 33px;
                 display: block;
                 font-size: 14px;
 

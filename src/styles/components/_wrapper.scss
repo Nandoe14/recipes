@@ -40,12 +40,42 @@
         overflow: hidden;
         z-index: 3;
 
-        transition: transform 5s ease;
+        transition: transform 3125ms ease;
 
         .pot-cover {
             width: 50%;
 
-            transition: transform 5s ease;
+            transition: transform 4375ms ease;
+        }
+    }
+
+    .gb-cont {
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: -176px;
+
+        transition: right 0.4s ease;
+
+        .chopping-plate {
+            height: 150px;
+            width: 300px;
+            -webkit-filter: drop-shadow(5px 9px 2px rgba(0, 0, 0, 0.863));
+                    filter: drop-shadow(5px 9px 2px rgba(0, 0, 0, 0.863));
+        }
+    
+        .go-back-cont {
+            position: absolute;
+            top: 42px;
+            right: -176px;
+            
+            transition: right 0.3s ease 0.1s;
+
+            .go-back {
+                width: 176px;
+                -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.663));
+                        filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.663));
+            }
         }
     }
 }
@@ -94,11 +124,29 @@
     text-align: center;
 }
 
+.black-transition-div {
+    background-color: rgba(0, 0, 0, 0.98);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    height: 100vh;
+    width: 100%;
+    z-index: 999999;
+}
+
 // Adding Animations
 
-.animate-container {
+.animate-container-results {
     -webkit-animation: showResults 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1;
             animation: showResults 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+.animate-container-goback {
+    -webkit-animation: goBack 1.5s linear 1;
+            animation: goBack 1.5s linear 1;
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
 }
@@ -111,4 +159,20 @@
 
 .remove-pt-cont {
     transform: translate(100%, 0);
+}
+
+.show-choppingt {
+    right: -14px!important;
+}
+
+.show-goback {
+    right: 17px!important;
+}
+
+.show-btd {
+    display: block!important;
+    -webkit-animation: btd 1.5s linear 1;
+            animation: btd 1.5s linear 1;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
 }

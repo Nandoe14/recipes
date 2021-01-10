@@ -5,6 +5,8 @@ import { Slider } from './slider/Slider'
 import { AppContext } from './AppContext'
 import potCoverImg from './../assets/potCover.png'
 import loadingImg from './../assets/loading.gif'
+import choppingPlateImg from './../assets/choppingPlate.png'
+import goBackImg from './../assets/goBack.png'
 
 export const Wrapper = () => {
 
@@ -14,6 +16,30 @@ export const Wrapper = () => {
     const containerRef = useRef(null)
     const potCoverContRef = useRef(null)
     const potCoverRef = useRef(null)
+    const choppingTableRef = useRef(null)
+    const goBackRef = useRef(null)
+    const btdRef = useRef(null)
+
+    const handleMouseEnterCT = () => {
+        choppingTableRef.current.classList.toggle("show-choppingt")
+        goBackRef.current.classList.toggle("show-goback")
+    }
+
+    const handleMouseLeaveCT = () => {
+        choppingTableRef.current.classList.toggle("show-choppingt")
+        goBackRef.current.classList.toggle("show-goback")
+    }
+
+    const handleClickCT = () => {
+        containerRef.current.classList.toggle("animate-container-results")
+        containerRef.current.classList.toggle("animate-container-goback")
+        btdRef.current.classList.toggle("show-btd")
+        setTimeout(() => {
+            potCoverRef.current.classList.toggle("remove-pot-top")
+            potCoverContRef.current.classList.toggle("remove-pt-cont")
+            btdRef.current.classList.toggle("show-btd")
+        }, 2000);
+    }
 
     return (
         <section id="wrapper">
@@ -22,6 +48,21 @@ export const Wrapper = () => {
                     <Slider />
                     <div ref={potCoverContRef} className="pot-cover-cont">
                         <img ref={potCoverRef} className="pot-cover" src={potCoverImg} alt="potCover" />
+                    </div>
+                    <div
+                        ref={choppingTableRef}
+                        className="gb-cont"
+                        onMouseEnter={handleMouseEnterCT}
+                        onMouseLeave={handleMouseLeaveCT}
+                        onClick={handleClickCT}
+                    >
+                        <img
+                            className="chopping-plate"
+                            src={choppingPlateImg} alt="Chopping Plate"
+                        />
+                        <div ref={goBackRef} className="go-back-cont">
+                            <img className="go-back" src={goBackImg} alt="Go Back" />
+                        </div>
                     </div>
                 </div>
                 <div className="set-side">
@@ -44,6 +85,7 @@ export const Wrapper = () => {
                     )
                 }
             </div>
+            <div ref={btdRef} className="black-transition-div"></div>
         </section>
     )
 }

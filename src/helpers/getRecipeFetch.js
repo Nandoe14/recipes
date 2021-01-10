@@ -13,7 +13,7 @@ export const getRecipeFetch = async (Arr = []) => {
         minCalories = `${(Arr[9].value === '') ? '' : `&minCalories=${Arr[9].value}`}`,
         maxSugar = `${(Arr[10].value === '') ? '' : `&maxSugar=${Arr[10].value}`}`,
         minSugar = `${(Arr[11].value === '') ? '' : `&minSugar=${Arr[11].value}`}`,
-        quantity = `${(Arr[12].value === '') ? '' : `&quantity=${Arr[12].value}`}`
+        quantity = `${(Arr[12].value === '') ? '' : `&quantity=${(parseFloat(Arr[12].value) > 8) ? 8 : Arr[12].value}`}`// Max 8 Cards
 
     const rlink = query + intolerances + type + includeIngredients + cuisine + excludeIngredients + diet + maxReadyTime + maxCalories + minCalories + maxSugar + minSugar + quantity
 
