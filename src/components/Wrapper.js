@@ -3,15 +3,17 @@ import { BGSlider } from './BGSlider'
 import { SetForm } from './SetForm'
 import { Slider } from './slider/Slider'
 import { AppContext } from './AppContext'
+import { labelInfo, truthValeArray, liContArrays } from './../data/labelFormData'
 import potCoverImg from './../assets/potCover.png'
 import loadingImg from './../assets/loading.gif'
 import choppingPlateImg from './../assets/choppingPlate.png'
 import goBackImg from './../assets/goBack.png'
+import { errorMessages } from './../data/errorsApiManage'
 
 export const Wrapper = () => {
 
-    const { formState } = useContext(AppContext)
-    const { loading } = formState
+    const { formState, setFormState } = useContext(AppContext)
+    const { loading, changeShow, labelFormNum, showLD, showErrorApi, errorApiNum } = formState
 
     const containerRef = useRef(null)
     const potCoverContRef = useRef(null)
@@ -35,10 +37,22 @@ export const Wrapper = () => {
         containerRef.current.classList.toggle("animate-container-goback")
         btdRef.current.classList.toggle("show-btd")
         setTimeout(() => {
-            potCoverRef.current.classList.toggle("remove-pot-top")
-            potCoverContRef.current.classList.toggle("remove-pt-cont")
+            if (!showErrorApi) {
+                potCoverRef.current.classList.toggle("remove-pot-top")
+                potCoverContRef.current.classList.toggle("remove-pt-cont")
+            }
             btdRef.current.classList.toggle("show-btd")
-        }, 2000);
+            setFormState({
+                ...formState,
+                showSparkles: true,
+                howManyCards: 8,
+                showErrorApi: false
+            })
+        }, 1600);
+        setFormState({
+            ...formState,
+            showErrorApi: false
+        })
     }
 
     return (
@@ -49,20 +63,27 @@ export const Wrapper = () => {
                     <div ref={potCoverContRef} className="pot-cover-cont">
                         <img ref={potCoverRef} className="pot-cover" src={potCoverImg} alt="potCover" />
                     </div>
-                    <div
-                        ref={choppingTableRef}
-                        className="gb-cont"
-                        onMouseEnter={handleMouseEnterCT}
-                        onMouseLeave={handleMouseLeaveCT}
-                        onClick={handleClickCT}
-                    >
-                        <img
-                            className="chopping-plate"
-                            src={choppingPlateImg} alt="Chopping Plate"
-                        />
-                        <div ref={goBackRef} className="go-back-cont">
-                            <img className="go-back" src={goBackImg} alt="Go Back" />
+                    {
+                        (!changeShow)
+                        &&
+                        <div
+                            ref={choppingTableRef}
+                            className="gb-cont"
+                            onMouseEnter={handleMouseEnterCT}
+                            onMouseLeave={handleMouseLeaveCT}
+                            onClick={handleClickCT}
+                        >
+                            <img
+                                className="chopping-plate"
+                                src={choppingPlateImg} alt="Chopping Plate"
+                            />
+                            <div ref={goBackRef} className="go-back-cont">
+                                <img className="go-back" src={goBackImg} alt="Go Back" />
+                            </div>
                         </div>
+                    }
+                    <div className={`error-api-message${(showErrorApi) ? ' error-api-show' : ''}`}>
+                        <p>{errorMessages[errorApiNum]}</p>
                     </div>
                 </div>
                 <div className="set-side">
@@ -71,6 +92,24 @@ export const Wrapper = () => {
                             <h2>Nando Recipes</h2>
                             <p className="principal-p">Hi! Search through hundreds of thousands of recipes using advanced filtering and ranking!</p>
                             <SetForm containerRef={containerRef} potCoverContRef={potCoverContRef} potCoverRef={potCoverRef} />
+                        </div>
+                        <div className={`label-description${(showLD) ? " ld-show" : ""}`}>
+                            <p className="lb-content">{labelInfo[labelFormNum]}</p>
+                            {
+                                (truthValeArray[labelFormNum])
+                                &&
+                                <ul className="ul-label-cont" key={labelFormNum}>
+                                    {
+                                        liContArrays[labelFormNum].map((licont, j) =>
+                                            <li
+                                                style={{ animationDuration: `${0.08 + (j * 0.04)}s` }}
+                                                className={`li-label-content${(showLD) ? " ld-li-show" : ""}`}
+                                                key={j}
+                                            >{licont}</li>
+                                        )
+                                    }
+                                </ul>
+                            }
                         </div>
                     </div>
                     <BGSlider />

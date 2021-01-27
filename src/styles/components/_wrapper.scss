@@ -54,8 +54,13 @@
         position: absolute;
         top: 20px;
         right: -176px;
+        z-index: 5;
 
         transition: right 0.4s ease;
+
+        &:active {
+            right: -4px!important;
+        }
 
         .chopping-plate {
             height: 150px;
@@ -75,7 +80,35 @@
                 width: 176px;
                 -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.663));
                         filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.663));
+
+                transition: transform 0.2s ease;
+            
+                &:active {
+                    transform: scale(0.8);
+                }
             }
+        }
+    }
+
+    .error-api-message {
+        position: absolute;
+        top: -100px;
+        width: 100%;
+        z-index: 4;
+
+        transition: top 0.4s ease;
+
+        p {
+            background-color: #8a2be2d1;
+            border-radius: 8px;
+            color: $primary;
+            display: block;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 22px;
+            margin: auto;
+            padding: 6px 8px;
+            text-align: center;
+            width: 410px;
         }
     }
 }
@@ -98,6 +131,41 @@
     left: 0;
     width: 100%;
     z-index: 2;
+
+    .label-description {
+        font-family: 'Lato', sans-serif;
+        color: $primary;
+        background-color: rgba(0, 0, 0, 0.59);
+        position: absolute;
+        padding: 20px;
+        top: 0;
+        right: -40%;
+        width: 40%;
+
+        transition: right 0.6s ease;
+
+        .lb-content {
+            font-size: 18px;
+        }
+
+        .ul-label-cont {
+            -webkit-column-count: 3;
+            -webkit-column-gap: 20px;
+            -moz-column-count: 3;
+                    column-count: 3;
+            -moz-column-gap: 20px;
+                    column-gap: 20px;
+            list-style-position: inside;
+            margin-top: 20px;
+
+            .li-label-content {
+                font-size: 17px;
+                margin-left: 0;
+                margin-bottom: 7px;
+                white-space: nowrap;
+            }
+        }
+    }
 }
 
 .set-info {
@@ -175,4 +243,19 @@
             animation: btd 1.5s linear 1;
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
+}
+
+.ld-show {
+    right: 0%!important;
+}
+
+.ld-li-show {
+    -webkit-animation: ldlishow 1.5s ease 1;
+            animation: ldlishow 1.5s ease 1;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+.error-api-show {
+    top: 24px!important;
 }

@@ -6,7 +6,7 @@ import { AppContext } from './AppContext'
 
 export const SetForm = ({ containerRef, potCoverContRef, potCoverRef }) => {
 
-    const { formState, setFormState } = useContext(AppContext)
+    const { formState, setFormState, resetCounter } = useContext(AppContext)
     const { showMore } = formState
 
     const [inputValues, handleInputChange, reset] = useForm({
@@ -53,21 +53,54 @@ export const SetForm = ({ containerRef, potCoverContRef, potCoverRef }) => {
             ...formState,
             loading: true
         })
-        setTimeout(() => {// This is for a static value configurable at getRecipeFetch.js
+        setTimeout(() => {
+            resetCounter(0)
             getRecipeFetch(e.target)
-                .then(info => setFormState({
-                    ...formState,
-                    loading: false,
-                    howManyCards: parseFloat(e.target[12].value),
-                    data: info
-                }))
-                .then(
+                .then(({ results = 1, data = [], totalResults = 1, code, message }) => {
+                    setFormState({
+                        ...formState,
+                        loading: false,
+                        showSparkles: false,
+                        howManyCards: results.length,
+                        data
+                    })
                     setTimeout(() => {
-                        potCoverRef.current.classList.toggle("remove-pot-top")
-                        potCoverContRef.current.classList.toggle("remove-pt-cont")
-                        reset()
+                        if (!message && (totalResults !== 0)) {
+                            potCoverRef.current.classList.toggle("remove-pot-top")
+                            potCoverContRef.current.classList.toggle("remove-pt-cont")
+                            reset()
+                        }
+                        if (totalResults === 0) {
+                            setFormState({
+                                ...formState,
+                                showErrorApi: true,
+                                errorApiNum: 0,
+                            })
+                        }
+                        if (code === 401) {
+                            setFormState({
+                                ...formState,
+                                showErrorApi: true,
+                                errorApiNum: 1,
+                            })
+                        }
+                        if (code === 402) {
+                            setFormState({
+                                ...formState,
+                                showErrorApi: true,
+                                errorApiNum: 2,
+                            })
+                        }
+                        if (code === 404) {
+                            setFormState({
+                                ...formState,
+                                showErrorApi: true,
+                                errorApiNum: 3,
+                            })
+                        }
                     }, 500)
-                )
+                })
+                .catch(console.error)
         }, 2000);
         containerRef.current.classList.toggle("animate-container-results")
         containerRef.current.classList.remove("animate-container-goback")

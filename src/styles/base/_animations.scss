@@ -27,15 +27,26 @@
 }
 
 @-webkit-keyframes btd {
-    0%   {display: block; opacity: 0;}
-    48%  {opacity: 1;}
-    52%  {opacity: 1;}
-    100% {display: none; opacity: 0;}
+    0%   {opacity: 0;}
+    40%  {opacity: 1;}
+    60%  {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @keyframes btd {
     0%   {opacity: 0;}
-    45%  {opacity: 1;}
-    55%  {opacity: 1;}
+    40%  {opacity: 1;}
+    60%  {opacity: 1;}
     100% {opacity: 0;}
 }
+
+@-webkit-keyframes ldlishow {
+    0%   {margin-left: 50vw;}
+    100% {margin-left: 0;}
+}
+
+@keyframes ldlishow {
+    0%   {margin-left: 50vw;}
+    100% {margin-left: 0;}
+}
+
