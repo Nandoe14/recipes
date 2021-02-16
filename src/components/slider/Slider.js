@@ -31,7 +31,7 @@ export const Slider = () => {
     return (
         <div className="slide">
             <div className="slide-cent">
-                <div className="cont" style={{ transform: `scale(${(window.innerWidth * 0.5) / 1000})` }}>
+                <div className="cont" style={{ transform: `scale(${(window.innerHeight * 1.05) / 1000})` }}>
                     {
                         cantCards.map((unit) =>
                             <SliderCard
