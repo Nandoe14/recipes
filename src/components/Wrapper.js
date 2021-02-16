@@ -112,7 +112,7 @@ export const Wrapper = () => {
                             }
                         </div>
                     </div>
-                    <BGSlider />
+                    <BGSlider bgseconds={20} />
                 </div>
                 {
                     (loading)
