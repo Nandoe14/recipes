@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { AppContext } from '../AppContext'
 import { SliderCard } from './SliderCard'
 import iRow from '../../assets/pass_i2.svg'
