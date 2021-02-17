@@ -54,6 +54,9 @@ export const SetForm = ({ containerRef, potCoverContRef, potCoverRef }) => {
             loading: true
         })
         setTimeout(() => {
+            cantLI.map((u, i) =>
+                document.querySelector(`#input-${namesArray[i]}`).blur()
+            )
             resetCounter(0)
             getRecipeFetch(e.target)
                 .then(({ results = 1, data = [], totalResults = 1, code, message }) => {
