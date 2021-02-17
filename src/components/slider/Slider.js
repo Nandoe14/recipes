@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useLayoutEffect, useRef } from 'react'
 import { AppContext } from '../AppContext'
 import { SliderCard } from './SliderCard'
 import iRow from '../../assets/pass_i2.svg'
 import dRow from '../../assets/pass_d2.svg'
 
-export const Slider = () => {
+export const Slider = ({ sliderSize }) => {
 
     const { formState, cantCards, counter, increment, decrement, resetCounter, resetn, n } = useContext(AppContext)
     const { changeShow } = formState
@@ -31,7 +31,7 @@ export const Slider = () => {
     return (
         <div className="slide">
             <div className="slide-cent">
-                <div className="cont" style={{ transform: `scale(${(window.innerHeight * 1.05) / 1000})` }}>
+                <div className="cont" style={{ transform: `scale(${(sliderSize * 0.50) / 1000})` }}>
                     {
                         cantCards.map((unit) =>
                             <SliderCard

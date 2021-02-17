@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
 import { BGSlider } from './BGSlider'
 import { SetForm } from './SetForm'
 import { Slider } from './slider/Slider'
@@ -12,6 +12,8 @@ import { errorMessages } from './../data/errorsApiManage'
 
 export const Wrapper = () => {
 
+    const [sliderSize, setSliderSize] = useState(1600)
+
     const { formState, setFormState } = useContext(AppContext)
     const { loading, changeShow, labelFormNum, showLD, showErrorApi, errorApiNum } = formState
 
@@ -21,6 +23,7 @@ export const Wrapper = () => {
     const choppingTableRef = useRef(null)
     const goBackRef = useRef(null)
     const btdRef = useRef(null)
+    const wrapperRef = useRef(null)
 
     const handleMouseEnterCT = () => {
         choppingTableRef.current.classList.toggle("show-choppingt")
@@ -55,11 +58,15 @@ export const Wrapper = () => {
         })
     }
 
+    useLayoutEffect(() => {
+        setSliderSize(wrapperRef.current.getBoundingClientRect().width)
+    }, [wrapperRef, sliderSize])
+
     return (
-        <section id="wrapper">
+        <section ref={wrapperRef} id="wrapper">
             <div ref={containerRef} className="container">
                 <div className="result-side">
-                    <Slider />
+                    <Slider sliderSize={sliderSize} />
                     <div ref={potCoverContRef} className="pot-cover-cont">
                         <img ref={potCoverRef} className="pot-cover" src={potCoverImg} alt="potCover" />
                     </div>
