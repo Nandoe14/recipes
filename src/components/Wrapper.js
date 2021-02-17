@@ -75,7 +75,7 @@ export const Wrapper = () => {
                         &&
                         <div
                             ref={choppingTableRef}
-                            className="gb-cont"
+                            className="gb-cont animate-gb"
                             onMouseEnter={handleMouseEnterCT}
                             onMouseLeave={handleMouseLeaveCT}
                             onClick={handleClickCT}

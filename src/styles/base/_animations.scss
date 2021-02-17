@@ -50,3 +50,21 @@
     100% {margin-left: 0;}
 }
 
+@-webkit-keyframes gbmove {
+    0%   {transform: rotate(0deg);}
+    92%   {transform: rotate(13deg);}
+    94%   {transform: rotate(-13deg);}
+    96%   {transform: rotate(13deg);}
+    98%   {transform: rotate(-13deg);}
+    100%   {transform: rotate(0deg);}
+}
+
+@keyframes gbmove {
+    0%   {transform: rotate(0deg);}
+    95%   {transform: rotate(0deg);}
+    96%   {transform: rotate(13deg);}
+    97%   {transform: rotate(-13deg);}
+    98%   {transform: rotate(13deg);}
+    99%   {transform: rotate(-13deg);}
+    100%   {transform: rotate(0deg);}
+}
